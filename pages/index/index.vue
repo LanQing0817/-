@@ -11,7 +11,9 @@
 			<view class="item">国内</view>
 		</scroll-view>
 		<view class="content">
-			<div class="row">每一行的新闻</div>
+			<view class="row" v-for="item in 10">
+				<NewsItem></NewsItem>
+			</view>
 		</view>
 	</view>
 </template>
@@ -53,5 +55,11 @@
 		color: #333;
 	}
 }
-	
+.content{
+	padding: 30rpx;
+	.row{
+		border-bottom: 1px dotted #efefef;
+		padding:15rpx 0;
+	}
+}
 </style>
