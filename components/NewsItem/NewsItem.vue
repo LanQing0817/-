@@ -1,13 +1,16 @@
 <template>
 	<view class="news-item">
 		<view class="pic">
-			<img src="../../static/兰青帅照.jpg" alt="" />
+			<image :src="item.picurl" alt="" mode="aspectFill"></image>
 		</view>
 		<view class="text-content">
-			<view class="title" title="fuck you">默认的新闻标题 默认的新闻标题 默认的新闻标题 默认的新闻标题 默认的新闻标题</view>
-			<view class="info">
-				<text class="author-name">作者名称</text>
-				<text class="flow-num">998浏览</text>
+			<view class="title" title="fuck you">{{item.title}}</view>
+			<view class="info" v-if="!item.lookTime">
+				<text class="author-name">{{item.author}}</text>
+				<text class="flow-num">{{item.hits}}浏览</text>
+			</view>
+			<view class="info" v-else>
+				<text class="time">浏览时间:{{item.lookTime}}</text>
 			</view>
 		</view>
 	</view>
@@ -16,6 +19,20 @@
 <script>
 	export default {
 		name: "NewsItem",
+		props: {
+			item: {
+				type: Object,
+				default () {
+					return {
+						title: "组件内默认的标题",
+						author: '张三',
+						hits: 668,
+						picurl: "../../static/兰青帅照.jpg",
+						lookTime:'2024-2-4 21:00:00'
+					}
+				}
+			}
+		},
 		data() {
 			return {
 
@@ -30,13 +47,13 @@
 		justify-content: flex-start;
 
 		.pic {
-			width: 400rpx;
+			width: 260rpx;
 			height: auto;
 
-			img {
+			image {
 				width: 100%;
 				height: 100%;
-				object-fit:cover;
+				object-fit: cover;
 			}
 		}
 
